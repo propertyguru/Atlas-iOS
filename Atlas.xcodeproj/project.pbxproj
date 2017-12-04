@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F2FE4C41FC81F0F005F7AF4 /* UICollectionView+ATLHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2FE4C21FC81F0E005F7AF4 /* UICollectionView+ATLHelpers.m */; };
 		1F2FE4C51FC81F0F005F7AF4 /* UIView+ATLHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2FE4C31FC81F0F005F7AF4 /* UIView+ATLHelpers.m */; };
+		1F91E22E1FD50809009F404C /* LayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250C5EF21C7656610084EB18 /* LayerKit.framework */; };
 		3DA2FAC31F1E9DAE00E890FA /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 7858B60C1CE54BBE007795AB /* block.png */; };
 		3DA2FAC41F1E9DAE00E890FA /* block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7858B60D1CE54BBE007795AB /* block@2x.png */; };
 		3DA2FAC51F1E9DAE00E890FA /* block@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7858B60E1CE54BBE007795AB /* block@3x.png */; };
@@ -448,6 +449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F91E22E1FD50809009F404C /* LayerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +967,7 @@
 			buildPhases = (
 				3DA2FAB61F1E9D9F00E890FA /* Sources */,
 				3DA2FAB71F1E9D9F00E890FA /* Frameworks */,
+				1F91E2311FD5082B009F404C /* ShellScript */,
 				3DA2FAB81F1E9D9F00E890FA /* Headers */,
 				3DA2FAB91F1E9D9F00E890FA /* Resources */,
 			);
@@ -1276,6 +1279,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		1F91E2311FD5082B009F404C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/LayerKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "carthage copy-frameworks";
 		};
 		5C91C26C5EBCE2E7CCA364BC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1741,6 +1758,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/LayerKit",
 					"../releases-ios/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1793,6 +1811,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/LayerKit",
 					"../releases-ios/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
